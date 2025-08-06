@@ -452,7 +452,7 @@ async def admin_user_action(action_data: AdminAction, current_user: dict = Depen
     if current_user["status"] not in ["Admin", "Support"]:
         raise HTTPException(status_code=403, detail="Access denied")
     
-    target_user = await database.users.find_one({"user_id": action_data.user_id})
+    target_user = await database.users.find_one({"user_id": action_data.user_id}, {"_id": 0})
     if not target_user:
         raise HTTPException(status_code=404, detail="User not found")
     
