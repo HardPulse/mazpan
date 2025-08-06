@@ -432,7 +432,7 @@ async def get_pending_users(current_user: dict = Depends(get_current_user)):
     if current_user["status"] not in ["Admin", "Support"]:
         raise HTTPException(status_code=403, detail="Access denied")
     
-    users = await database.users.find({"approved": False}).to_list(None)
+    users = await database.users.find({"approved": False}, {"_id": 0}).to_list(None)
     return {"users": users}
 
 @app.get("/api/admin/users")
