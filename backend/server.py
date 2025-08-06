@@ -268,7 +268,7 @@ async def create_folder(folder_data: FolderCreate, current_user: dict = Depends(
 
 @app.delete("/api/folders/{folder_id}")
 async def delete_folder(folder_id: str, current_user: dict = Depends(get_current_user)):
-    folder = await database.folders.find_one({"folder_id": folder_id, "user_id": current_user["user_id"]})
+    folder = await database.folders.find_one({"folder_id": folder_id, "user_id": current_user["user_id"]}, {"_id": 0})
     
     if not folder:
         raise HTTPException(status_code=404, detail="Folder not found")
@@ -277,7 +277,7 @@ async def delete_folder(folder_id: str, current_user: dict = Depends(get_current
         raise HTTPException(status_code=400, detail="Cannot delete Main folder")
     
     # Move all accounts from this folder to Main
-    main_folder = await database.folders.find_one({"user_id": current_user["user_id"], "name": "Main"})
+    main_folder = await database.folders.find_one({"user_id": current_user["user_id"], "name": "Main"}, {"_id": 0})
     await database.accounts.update_many(
         {"folder_id": folder_id},
         {"$set": {"folder_id": main_folder["folder_id"]}}
