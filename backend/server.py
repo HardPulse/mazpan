@@ -351,7 +351,7 @@ async def download_accounts(download_data: AccountsDownload, current_user: dict 
     accounts = await database.accounts.find({
         "account_id": {"$in": download_data.account_ids},
         "user_id": current_user["user_id"]
-    }).to_list(None)
+    }, {"_id": 0}).to_list(None)
     
     account_lines = []
     for account in accounts:
