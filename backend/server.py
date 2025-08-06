@@ -297,7 +297,7 @@ async def upload_accounts(account_data: AccountData, current_user: dict = Depend
     folder_id = account_data.folder_id
     if not folder_id:
         # Get Main folder
-        main_folder = await database.folders.find_one({"user_id": current_user["user_id"], "name": "Main"})
+        main_folder = await database.folders.find_one({"user_id": current_user["user_id"], "name": "Main"}, {"_id": 0})
         folder_id = main_folder["folder_id"]
     
     accounts = []
