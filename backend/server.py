@@ -406,11 +406,11 @@ async def select_accounts(select_data: SelectAccounts, current_user: dict = Depe
     if select_data.criteria == "geo" and select_data.value:
         query["geo"] = select_data.value
     
-    accounts = await database.accounts.find(query).to_list(None)
+    accounts = await database.accounts.find(query, {"_id": 0}).to_list(None)
     
     if select_data.criteria == "cooldown":
         # Get folder info for cooldown calculation
-        folders = await database.folders.find({"user_id": current_user["user_id"]}).to_list(None)
+        folders = await database.folders.find({"user_id": current_user["user_id"]}, {"_id": 0}).to_list(None)
         folder_map = {f["folder_id"]: f for f in folders}
         
         cooldown_accounts = []
