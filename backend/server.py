@@ -236,7 +236,7 @@ async def get_current_user_info(current_user: dict = Depends(get_current_user)):
 # Folders endpoints
 @app.get("/api/folders")
 async def get_folders(current_user: dict = Depends(get_current_user)):
-    folders = await database.folders.find({"user_id": current_user["user_id"]}).to_list(None)
+    folders = await database.folders.find({"user_id": current_user["user_id"]}, {"_id": 0}).to_list(None)
     
     # Ensure Main folder exists
     main_folder = next((f for f in folders if f["name"] == "Main"), None)
