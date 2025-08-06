@@ -667,54 +667,59 @@ const App = () => {
   return (
     <div className="min-h-screen glass-bg">
       {/* Header */}
-      <div className="glass-header p-4">
+      <div className="glass-header p-6">
         <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-white">{t.title}</h1>
+          <div className="flex items-center gap-4">
+            <h1 className="text-4xl font-black text-white tracking-wider">
+              {t.title}
+              <div className="text-sm font-normal text-red-400">Premium Management Panel</div>
+            </h1>
+          </div>
           
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-8">
             <div className="text-white text-right">
-              <p className="text-xl font-bold">{user.username}</p>
-              <div className="flex gap-4 text-sm">
-                <span className={`px-2 py-1 rounded ${
-                  user.status === 'Admin' ? 'bg-red-500' :
-                  user.status === 'Support' ? 'bg-blue-500' :
-                  user.status === 'VIP User' ? 'bg-purple-500' :
-                  user.status === 'Super User' ? 'bg-green-500' :
-                  'bg-gray-500'
+              <p className="text-2xl font-black tracking-wide">{user.username}</p>
+              <div className="flex gap-4 text-sm mt-1">
+                <span className={`px-3 py-2 rounded-full font-bold text-xs tracking-wider ${
+                  user.status === 'Admin' ? 'status-admin' :
+                  user.status === 'Support' ? 'status-support' :
+                  user.status === 'VIP User' ? 'status-vip' :
+                  user.status === 'Super User' ? 'status-super' :
+                  'status-user'
                 }`}>
                   {user.status}
                 </span>
-                <span className="text-yellow-400 font-bold">${user.balance.toFixed(2)}</span>
+                <span className="text-yellow-400 font-black text-lg">${user.balance.toFixed(2)}</span>
               </div>
             </div>
             
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               <select 
                 value={language} 
                 onChange={(e) => handleLanguageChange(e.target.value)}
-                className="glass-input p-2"
+                className="glass-input p-3 text-sm"
               >
-                <option value="ru">RU</option>
-                <option value="en">EN</option>
+                <option value="ru">🇷🇺 RU</option>
+                <option value="en">🇬🇧 EN</option>
               </select>
               
               {(user.status === 'Admin' || user.status === 'Support') && (
                 <button 
-                  className="glass-button px-4 py-2"
+                  className="glass-button premium-button px-6 py-3 font-bold"
                   onClick={() => {
                     setShowAdminPanel(true);
                     fetchAdminData();
                   }}
                 >
-                  {user.status === 'Admin' ? t.adminPanel : t.supportPanel}
+                  👑 {user.status === 'Admin' ? t.adminPanel : t.supportPanel}
                 </button>
               )}
               
               <button 
-                className="glass-button-danger px-4 py-2"
+                className="glass-button-danger px-6 py-3 font-bold"
                 onClick={handleLogout}
               >
-                {t.logout}
+                🚪 {t.logout}
               </button>
             </div>
           </div>
