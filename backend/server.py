@@ -444,7 +444,7 @@ async def get_all_users(current_user: dict = Depends(get_current_user)):
     if current_user["status"] == "Support":
         query["status"] = {"$ne": "Admin"}
     
-    users = await database.users.find(query).to_list(None)
+    users = await database.users.find(query, {"_id": 0}).to_list(None)
     return {"users": users}
 
 @app.post("/api/admin/user-action")
