@@ -326,10 +326,10 @@ async def get_accounts(folder_id: Optional[str] = None, current_user: dict = Dep
     if folder_id:
         query["folder_id"] = folder_id
     
-    accounts = await database.accounts.find(query).to_list(None)
+    accounts = await database.accounts.find(query, {"_id": 0}).to_list(None)
     
     # Get folder info for cooldown calculation
-    folders = await database.folders.find({"user_id": current_user["user_id"]}).to_list(None)
+    folders = await database.folders.find({"user_id": current_user["user_id"]}, {"_id": 0}).to_list(None)
     folder_map = {f["folder_id"]: f for f in folders}
     
     # Calculate cooldown status
