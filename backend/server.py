@@ -170,7 +170,7 @@ async def startup_event():
 @app.post("/api/register")
 async def register(user_data: UserRegistration):
     # Check if user exists
-    existing_user = await database.users.find_one({"username": user_data.username})
+    existing_user = await database.users.find_one({"username": user_data.username}, {"_id": 0})
     if existing_user:
         raise HTTPException(status_code=400, detail="Username already exists")
     
