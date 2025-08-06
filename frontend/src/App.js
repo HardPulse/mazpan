@@ -771,43 +771,43 @@ const App = () => {
           {/* Main Content */}
           <div className="lg:col-span-3">
             {/* Controls */}
-            <div className="glass-card p-4 mb-6">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="glass-card p-6 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 <button 
-                  className="glass-button p-3"
+                  className="glass-button premium-button p-4 font-bold"
                   onClick={() => setShowUploadModal(true)}
                 >
-                  {t.uploadAccounts}
+                  📤 {t.uploadAccounts}
                 </button>
                 <button 
-                  className="glass-button p-3"
+                  className="glass-button premium-button p-4 font-bold"
                   onClick={handleTakeAccounts}
                 >
-                  {t.takeAccounts}
+                  💾 {t.takeAccounts}
                 </button>
                 <button 
-                  className="glass-button-danger p-3"
+                  className="glass-button-danger p-4 font-bold"
                   onClick={handleDeleteAccounts}
                 >
-                  {t.deleteAccounts}
+                  🗑️ {t.deleteAccounts}
                 </button>
                 <button 
-                  className="glass-button p-3"
+                  className="glass-button premium-button p-4 font-bold"
                   onClick={() => setShowTimeModal(true)}
                 >
-                  {t.setTime}
+                  ⏰ {t.setTime}
                 </button>
                 <button 
-                  className="glass-button p-3"
+                  className="glass-button premium-button p-4 font-bold"
                   onClick={() => setShowMoveModal(true)}
                 >
-                  {t.moveAccounts}
+                  📁 {t.moveAccounts}
                 </button>
                 <button 
-                  className="glass-button p-3"
+                  className="glass-button premium-button p-4 font-bold"
                   onClick={() => setShowSelectModal(true)}
                 >
-                  {t.selectAccounts}
+                  🎯 {t.selectAccounts}
                 </button>
               </div>
             </div>
