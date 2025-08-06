@@ -512,19 +512,6 @@ const App = () => {
               {showLogin ? t.loginBtn : t.registerBtn}
             </button>
           </form>
-
-          {showLogin && (
-            <div className="mt-8 p-6 glass-card bg-opacity-50">
-              <h3 className="text-lg font-bold text-white mb-3">👑 Admin Access</h3>
-              <div className="text-sm text-gray-300 space-y-2">
-                <div><span className="text-red-400 font-semibold">Username:</span> Логин</div>
-                <div><span className="text-red-400 font-semibold">Password:</span> пароль</div>
-              </div>
-              <div className="text-xs text-gray-400 mt-3">
-                Use these credentials for admin panel access
-              </div>
-            </div>
-          )}
         </div>
       </div>
     );
