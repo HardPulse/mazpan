@@ -293,82 +293,148 @@
     0 0 15px rgba(255, 50, 100, 0.2);
 }
 
-/* Table Styles */
+/* Premium Table Styles */
 table {
   border-collapse: separate;
   border-spacing: 0;
 }
 
 table th {
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   font-size: 0.875rem;
+  color: rgba(255, 50, 100, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 table td, table th {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 50, 100, 0.15);
 }
 
 table tbody tr {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: rgba(15, 15, 30, 0.2);
 }
 
 table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 50, 100, 0.08);
   transform: scale(1.01);
+  box-shadow: 
+    0 4px 15px rgba(255, 50, 100, 0.1),
+    inset 0 1px 0 rgba(255, 50, 100, 0.1);
 }
 
-/* Status Badges */
-.status-admin { @apply bg-red-500; }
-.status-support { @apply bg-blue-500; }
-.status-vip { @apply bg-purple-500; }
-.status-super { @apply bg-green-500; }
-.status-user { @apply bg-gray-500; }
+/* Premium Status Badges */
+.status-admin { 
+  background: linear-gradient(135deg, rgba(255, 50, 50, 0.8) 0%, rgba(200, 30, 30, 0.9) 100%);
+  box-shadow: 0 2px 10px rgba(255, 50, 50, 0.4);
+}
+.status-support { 
+  background: linear-gradient(135deg, rgba(50, 150, 255, 0.8) 0%, rgba(30, 120, 200, 0.9) 100%);
+  box-shadow: 0 2px 10px rgba(50, 150, 255, 0.4);
+}
+.status-vip { 
+  background: linear-gradient(135deg, rgba(150, 50, 255, 0.8) 0%, rgba(120, 30, 200, 0.9) 100%);
+  box-shadow: 0 2px 10px rgba(150, 50, 255, 0.4);
+}
+.status-super { 
+  background: linear-gradient(135deg, rgba(50, 255, 150, 0.8) 0%, rgba(30, 200, 120, 0.9) 100%);
+  box-shadow: 0 2px 10px rgba(50, 255, 150, 0.4);
+}
+.status-user { 
+  background: linear-gradient(135deg, rgba(150, 150, 150, 0.8) 0%, rgba(120, 120, 120, 0.9) 100%);
+  box-shadow: 0 2px 10px rgba(150, 150, 150, 0.4);
+}
 
-/* Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+/* Premium Animations */
+@keyframes premium-float {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  25% { 
+    transform: translateY(-8px) rotate(0.5deg); 
+  }
+  50% { 
+    transform: translateY(-15px) rotate(0deg); 
+  }
+  75% { 
+    transform: translateY(-8px) rotate(-0.5deg); 
+  }
+}
+
+@keyframes premium-glow {
+  0%, 100% {
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 0 0 1px rgba(255, 50, 100, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 15px 40px 0 rgba(255, 50, 100, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 0 1px rgba(255, 50, 100, 0.3);
+  }
+}
+
+@keyframes premium-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
 }
 
 .glass-card:hover {
-  animation: float 3s ease-in-out infinite;
+  animation: premium-glow 2s ease-in-out infinite;
 }
 
-/* Scrollbars */
+/* Premium Scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  background: rgba(15, 15, 30, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(255, 50, 100, 0.6) 0%, rgba(200, 40, 80, 0.7) 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 50, 100, 0.3);
+  box-shadow: 0 2px 8px rgba(255, 50, 100, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(135deg, rgba(255, 50, 100, 0.8) 0%, rgba(200, 40, 80, 0.9) 100%);
+  box-shadow: 0 4px 15px rgba(255, 50, 100, 0.4);
 }
 
-/* Mobile Responsive */
+::-webkit-scrollbar-corner {
+  background: rgba(15, 15, 30, 0.3);
+}
+
+/* Mobile Responsive Premium */
 @media (max-width: 768px) {
   .glass-card {
-    border-radius: 15px;
-    margin: 10px;
+    border-radius: 20px;
+    margin: 12px;
   }
   
   .glass-header {
-    padding: 1rem;
+    padding: 1.2rem;
   }
   
   .glass-header .container {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.2rem;
   }
   
   table {
@@ -380,52 +446,98 @@ table tbody tr:hover {
   }
 }
 
-/* Loading Animation */
-@keyframes spin {
+/* Premium Loading Animation */
+@keyframes premium-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
+@keyframes premium-loading-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 50, 100, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 50, 100, 0.8);
+  }
+}
+
 .animate-spin {
-  animation: spin 1s linear infinite;
+  animation: premium-spin 1s linear infinite, premium-loading-glow 2s ease-in-out infinite;
+  border-color: rgba(255, 50, 100, 0.6);
 }
 
-/* Focus States */
+/* Premium Focus States */
 button:focus, input:focus, select:focus {
-  outline: 2px solid rgba(255, 255, 255, 0.5);
-  outline-offset: 2px;
+  outline: 2px solid rgba(255, 50, 100, 0.6);
+  outline-offset: 3px;
+  box-shadow: 0 0 15px rgba(255, 50, 100, 0.3);
 }
 
-/* Selection Styles */
+/* Premium Selection Styles */
 ::selection {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 50, 100, 0.4);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Glass effect enhancements */
-.glass-card::before {
+/* Premium Glass effect enhancements */
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 50, 100, 0.02));
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Premium Text shadows for better readability */
+.text-white {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Premium Login Form Enhancements */
+.login-form-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.login-form-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 50, 100, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(150, 50, 255, 0.10) 0%, transparent 50%);
+  animation: premium-float 8s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Enhanced Premium Buttons with Neon Effect */
+.premium-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-button::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.8s;
 }
 
-.glass-card::after {
-  content: '';
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  right: 1px;
-  bottom: 1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-  pointer-events: none;
-}
-
-/* Text shadows for better readability */
-.text-white {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+.premium-button:hover::after {
+  transform: translateX(100%);
 }
