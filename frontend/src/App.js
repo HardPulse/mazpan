@@ -813,15 +813,23 @@ const App = () => {
             </div>
 
             {/* Accounts Table */}
-            <div className="glass-card p-6">
+            <div className="glass-card p-8">
               {currentFolder && (
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {currentFolder.name} ({accounts.length} accounts)
+                <div className="mb-6">
+                  <h3 className="text-2xl font-black text-white mb-3 tracking-wide">
+                    📂 {currentFolder.name} 
+                    <span className="text-red-400 text-lg ml-2">({accounts.length} accounts)</span>
                   </h3>
-                  <p className="text-gray-300">
-                    Cooldown: {currentFolder.cooldown_hours || 1} hours
-                  </p>
+                  <div className="flex items-center gap-4">
+                    <p className="text-gray-300 font-semibold">
+                      ⏱️ Cooldown: <span className="text-red-400">{currentFolder.cooldown_hours || 1} hours</span>
+                    </p>
+                    {accounts.filter(acc => acc.cooldown_completed).length > 0 && (
+                      <p className="text-green-400 font-semibold">
+                        ✅ Ready: {accounts.filter(acc => acc.cooldown_completed).length}
+                      </p>
+                    )}
+                  </div>
                 </div>
               )}
 
