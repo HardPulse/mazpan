@@ -729,36 +729,43 @@ const App = () => {
       <div className="container mx-auto p-4">
         {/* Folders Sidebar */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          <div className="glass-card p-4">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold text-white">{t.folders}</h3>
+          <div className="glass-card p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-bold text-white tracking-wide">📁 {t.folders}</h3>
               <button 
                 className="glass-button-small"
                 onClick={() => setShowFolderModal(true)}
+                title="Create New Folder"
               >
                 +
               </button>
             </div>
             
-            <div className="space-y-2">
+            <div className="space-y-3">
               {folders.map(folder => (
                 <div 
                   key={folder.folder_id}
-                  className={`flex items-center justify-between p-2 rounded cursor-pointer ${
+                  className={`flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all duration-300 ${
                     currentFolder?.folder_id === folder.folder_id 
-                      ? 'bg-white bg-opacity-20' 
-                      : 'hover:bg-white hover:bg-opacity-10'
+                      ? 'bg-red-500 bg-opacity-20 border border-red-500 border-opacity-40 shadow-lg shadow-red-500 shadow-opacity-20' 
+                      : 'hover:bg-white hover:bg-opacity-10 border border-transparent'
                   }`}
                   onClick={() => setCurrentFolder(folder)}
                 >
-                  <span className="text-white">{folder.name}</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">
+                      {folder.name === 'Main' ? '🏠' : '📂'}
+                    </span>
+                    <span className="text-white font-semibold text-lg">{folder.name}</span>
+                  </div>
                   {folder.name !== 'Main' && (
                     <button 
-                      className="text-red-400 hover:text-red-300 text-sm"
+                      className="text-red-400 hover:text-red-300 text-xl font-bold transition-colors duration-200"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleDeleteFolder(folder.folder_id);
                       }}
+                      title="Delete Folder"
                     >
                       ×
                     </button>
