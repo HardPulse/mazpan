@@ -141,7 +141,7 @@ def parse_account_format(line: str) -> Dict[str, Any]:
 @app.on_event("startup")
 async def startup_event():
     # Create default admin user if not exists
-    admin_user = await database.users.find_one({"username": "Логин"})
+    admin_user = await database.users.find_one({"username": "Логин"}, {"_id": 0})
     if not admin_user:
         admin_data = {
             "user_id": str(uuid.uuid4()),
