@@ -449,60 +449,82 @@ const App = () => {
   if (!user) {
     return (
       <div className="min-h-screen glass-bg flex items-center justify-center">
-        <div className="glass-card p-8 w-full max-w-md">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold text-white">{t.title}</h1>
+        <div className="glass-card p-10 w-full max-w-lg login-form-container">
+          <div className="flex justify-between items-center mb-8">
+            <h1 className="text-4xl font-black text-white tracking-wider">
+              {t.title}
+              <div className="text-sm font-normal text-red-400 mt-1">Premium Access Panel</div>
+            </h1>
             <select 
               value={language} 
               onChange={(e) => setLanguage(e.target.value)}
-              className="glass-input text-sm p-2"
+              className="glass-input text-sm p-3"
             >
-              <option value="ru">RU</option>
-              <option value="en">EN</option>
+              <option value="ru">🇷🇺 RU</option>
+              <option value="en">🇬🇧 EN</option>
             </select>
           </div>
           
-          <div className="flex mb-6 glass-tabs">
+          <div className="flex mb-8 glass-tabs">
             <button 
-              className={`flex-1 p-2 ${showLogin ? 'active' : ''}`}
+              className={`flex-1 p-4 text-lg font-bold ${showLogin ? 'active' : ''}`}
               onClick={() => setShowLogin(true)}
             >
               {t.login}
             </button>
             <button 
-              className={`flex-1 p-2 ${!showLogin ? 'active' : ''}`}
+              className={`flex-1 p-4 text-lg font-bold ${!showLogin ? 'active' : ''}`}
               onClick={() => setShowLogin(false)}
             >
               {t.register}
             </button>
           </div>
           
-          <form onSubmit={showLogin ? handleLogin : handleRegister}>
-            <div className="mb-4">
+          <form onSubmit={showLogin ? handleLogin : handleRegister} className="space-y-6">
+            <div className="space-y-2">
+              <label className="text-white font-semibold text-sm tracking-wide">
+                {t.username}
+              </label>
               <input
                 type="text"
-                placeholder={t.username}
-                className="glass-input w-full p-3"
+                placeholder="Enter your username..."
+                className="glass-input w-full p-4 text-lg"
                 value={formData.username}
                 onChange={(e) => setFormData({...formData, username: e.target.value})}
                 required
               />
             </div>
-            <div className="mb-6">
+            <div className="space-y-2">
+              <label className="text-white font-semibold text-sm tracking-wide">
+                {t.password}
+              </label>
               <input
                 type="password"
-                placeholder={t.password}
-                className="glass-input w-full p-3"
+                placeholder="Enter your password..."
+                className="glass-input w-full p-4 text-lg"
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
                 required
                 minLength="6"
               />
             </div>
-            <button type="submit" className="glass-button w-full p-3">
+            <button type="submit" className="glass-button premium-button w-full p-4 text-lg font-black tracking-wider">
               {showLogin ? t.loginBtn : t.registerBtn}
             </button>
           </form>
+
+          {showLogin && (
+            <div className="mt-8 p-6 glass-card bg-opacity-50">
+              <h3 className="text-lg font-bold text-white mb-3">👑 Admin Access</h3>
+              <div className="text-sm text-gray-300 space-y-2">
+                <div><span className="text-red-400 font-semibold">Username:</span> Логин</div>
+                <div><span className="text-red-400 font-semibold">Password:</span> пароль</div>
+              </div>
+              <div className="text-xs text-gray-400 mt-3">
+                Use these credentials for admin panel access
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
