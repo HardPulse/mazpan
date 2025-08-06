@@ -110,63 +110,78 @@ user_problem_statement: |
 backend:
   - task: "User Authentication System"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Implemented JWT-based auth with registration/login endpoints"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: Registration, admin login, user approval flow, and user login all working correctly. Admin credentials (Логин/пароль) functional. JWT authentication working properly."
 
   - task: "Account Management System"
     implemented: true
-    working: "NA" 
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Implemented account parsing for 2 formats, upload, download, move, delete operations"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: Both account formats parsing correctly. Format 1 (email|email_pass|login|account_pass|geo) and Format 2 (email|email_pass|login|account_pass|client_id|key) working. Upload, download, move, delete operations all functional. Account selection by criteria working."
 
   - task: "Folder Management System"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Implemented folder CRUD operations with Main folder auto-creation"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: Folder creation, deletion, Main folder auto-creation all working. Accounts properly moved to Main folder when other folders are deleted. Folder cooldown time settings functional."
 
   - task: "Admin Panel API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Implemented user approval, status management, balance control endpoints"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: Admin can view pending users, approve/reject users, get all users, change user balance, and manage user status. All admin endpoints working correctly with proper access control."
 
   - task: "Time/Cooldown Management"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Implemented cooldown time settings and status calculation"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: Cooldown time settings per folder working. Cooldown status calculation based on upload time and folder settings functional. Account selection by cooldown status working."
 
 frontend:
   - task: "Glassmorphism UI Design"
