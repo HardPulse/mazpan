@@ -264,7 +264,17 @@ async def create_folder(folder_data: FolderCreate, current_user: dict = Depends(
     }
     
     await database.folders.insert_one(folder)
-    return {"folder": folder}
+    
+    # Return folder without _id
+    folder_response = {
+        "folder_id": folder["folder_id"],
+        "user_id": folder["user_id"],
+        "name": folder["name"],
+        "cooldown_hours": folder["cooldown_hours"],
+        "created_at": folder["created_at"]
+    }
+    
+    return {"folder": folder_response}
 
 @app.delete("/api/folders/{folder_id}")
 async def delete_folder(folder_id: str, current_user: dict = Depends(get_current_user)):
