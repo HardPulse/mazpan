@@ -1228,8 +1228,8 @@ const App = () => {
             </button>
           </div>
 
-          <form onSubmit={showLogin ? handleLogin : handleRegister} className="space-y-6">
-            <div className="space-y-2">
+          <form onSubmit={showLogin ? handleLogin : handleRegister} className="space-y-8">
+            <div className="space-y-3">
               <label className="text-white font-semibold text-sm tracking-wide">
                 {t.username}
               </label>
@@ -1242,7 +1242,7 @@ const App = () => {
                 required
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <label className="text-white font-semibold text-sm tracking-wide">
                 {t.password}
               </label>
@@ -1256,7 +1256,7 @@ const App = () => {
                 minLength="6"
               />
             </div>
-            <button type="submit" className="glass-button premium-button w-full p-4 text-lg font-black tracking-wider">
+            <button type="submit" className="glass-button w-full p-4 text-lg font-black tracking-wider mt-4">
               {showLogin ? t.loginBtn : t.registerBtn}
             </button>
           </form>
@@ -1335,75 +1335,77 @@ const App = () => {
           </div>
         </div>
 
-        <div className="container mx-auto p-4">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="container mx-auto p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             {/* Categories Sidebar */}
-            <div className="glass-card p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-white tracking-wide">
-                  <span className="folder-icon">📂</span> {t.categories}
-                </h3>
-                {user.status === 'Admin' && (
-                  <button
-                    className="glass-button glass-button-success px-4 py-2 text-xl font-bold"
-                    onClick={() => setShowCreateCategory(true)}
-                    title="Create Category"
-                  >
-                    +
-                  </button>
-                )}
-              </div>
-
-              <div className="space-y-3">
-                <div
-                  className={`category-item ${!selectedCategory ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory(null)}
-                >
-                  <span className="text-white font-semibold">📦 Все товары</span>
-                </div>
-                
-                {categories.map(category => (
-                  <div
-                    key={category.category_id}
-                    className={`category-item ${
-                      selectedCategory?.category_id === category.category_id ? 'active' : ''
-                    }`}
-                  >
-                    <div 
-                      className="flex-1 cursor-pointer"
-                      onClick={() => setSelectedCategory(category)}
+            <div className="lg:col-span-1">
+              <div className="glass-card p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-2xl font-bold text-white tracking-wide">
+                    <span className="folder-icon">📂</span> {t.categories}
+                  </h3>
+                  {user.status === 'Admin' && (
+                    <button
+                      className="glass-button glass-button-success px-4 py-2 text-xl font-bold"
+                      onClick={() => setShowCreateCategory(true)}
+                      title="Create Category"
                     >
-                      <div className="flex items-center justify-between">
-                        <span className="text-white font-semibold">📁 {category.name}</span>
-                        {user.status === 'Admin' && (
-                          <button
-                            className="glass-button glass-button-danger ml-2 px-2 py-1 text-sm"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleDeleteCategory(category.category_id);
-                            }}
-                            title={t.deleteCategory}
-                          >
-                            🗑️
-                          </button>
+                      +
+                    </button>
+                  )}
+                </div>
+
+                <div className="space-y-4">
+                  <div
+                    className={`category-item ${!selectedCategory ? 'active' : ''}`}
+                    onClick={() => setSelectedCategory(null)}
+                  >
+                    <span className="text-white font-semibold">📦 Все товары</span>
+                  </div>
+
+                  {categories.map(category => (
+                    <div
+                      key={category.category_id}
+                      className={`category-item ${
+                        selectedCategory?.category_id === category.category_id ? 'active' : ''
+                      }`}
+                    >
+                      <div
+                        className="flex-1 cursor-pointer"
+                        onClick={() => setSelectedCategory(category)}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-white font-semibold">📁 {category.name}</span>
+                          {user.status === 'Admin' && (
+                            <button
+                              className="glass-button glass-button-danger ml-2 px-2 py-1 text-sm"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteCategory(category.category_id);
+                              }}
+                              title={t.deleteCategory}
+                            >
+                              🗑️
+                            </button>
+                          )}
+                        </div>
+                        {category.description && (
+                          <p className="text-gray-300 text-sm mt-1">{category.description}</p>
                         )}
                       </div>
-                      {category.description && (
-                        <p className="text-gray-300 text-sm mt-1">{category.description}</p>
-                      )}
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Products */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-4">
               {user.status === 'Admin' && (
-                <div className="glass-card p-6 mb-6">
+                <div className="glass-card p-6 mb-8">
                   <div className="flex justify-between items-center">
                     <h3 className="text-xl font-bold text-white">Admin Controls</h3>
-                    <div className="flex gap-3">
+                    <div className="flex gap-4">
                       {/* NEW: Statistics Button */}
                       <button
                         className="glass-button glass-button-secondary px-4 py-2"
@@ -1422,10 +1424,10 @@ const App = () => {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                 {products.map(product => (
-                  <div key={product.product_id} className="glass-card p-6 product-card">
-                    <div className="flex justify-between items-start mb-4">
+                  <div key={product.product_id} className="glass-card p-6 product-card flex flex-col">
+                    <div className="flex justify-between items-start mb-4 flex-shrink-0">
                       <h4 className="text-xl font-bold text-white">{product.title}</h4>
                       <span className={`product-type-badge ${
                         product.product_type === 'accounts' ? 'accounts' : 'other'
@@ -2121,7 +2123,7 @@ const App = () => {
         <div className="glass-header p-6">
           <div className="container mx-auto flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <h1 className="text-4xl font-black text-white tracking-wider premium-title">
+              <h1 className="text-4xl font-black text-white tracking-wider">
                 {t.title}
                 <div className="text-sm font-normal text-red-400">Premium Management Panel</div>
               </h1>
@@ -2190,7 +2192,7 @@ const App = () => {
 
         {/* Hero Section */}
         <div className="hero-section">
-          <h2 className="hero-title premium-welcome">{t.welcome}</h2>
+          <h2 className="hero-title">{t.welcome}</h2>
         </div>
 
         {/* Features Grid */}
@@ -2408,46 +2410,46 @@ const App = () => {
           </div>
 
           {/* Roles Statistics */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <div className="glass-card p-4 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="glass-card p-6 text-center">
               <h3 className="text-lg font-bold text-white">{t.userCount}</h3>
-              <p className="text-2xl text-red-400">{rolesStats.User}</p>
+              <p className="text-3xl text-red-400 font-bold">{rolesStats.User}</p>
             </div>
-            <div className="glass-card p-4 text-center">
+            <div className="glass-card p-6 text-center">
               <h3 className="text-lg font-bold text-white">{t.superUserCount}</h3>
-              <p className="text-2xl text-red-400">{rolesStats['Super User']}</p>
+              <p className="text-3xl text-red-400 font-bold">{rolesStats['Super User']}</p>
             </div>
-            <div className="glass-card p-4 text-center">
+            <div className="glass-card p-6 text-center">
               <h3 className="text-lg font-bold text-white">{t.vipUserCount}</h3>
-              <p className="text-2xl text-red-400">{rolesStats['VIP User']}</p>
+              <p className="text-3xl text-red-400 font-bold">{rolesStats['VIP User']}</p>
             </div>
-            <div className="glass-card p-4 text-center">
+            <div className="glass-card p-6 text-center">
               <h3 className="text-lg font-bold text-white">{t.supportCount}</h3>
-              <p className="text-2xl text-red-400">{rolesStats.Support}</p>
+              <p className="text-3xl text-red-400 font-bold">{rolesStats.Support}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Pending Users */}
             <div className="glass-card p-6">
-              <h2 className="text-xl font-bold text-white mb-4">{t.pendingUsers}</h2>
-              <div className="space-y-4 max-h-96 overflow-y-auto">
+              <h2 className="text-2xl font-bold text-white mb-6">{t.pendingUsers}</h2>
+              <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
                 {pendingUsers.map(user => (
-                  <div key={user.user_id} className="glass-card p-4">
+                  <div key={user.user_id} className="glass-card p-4 hover:bg-gray-700">
                     <div className="flex justify-between items-center">
                       <div>
-                        <p className="text-white font-medium">{user.username}</p>
-                        <p className="text-gray-300 text-sm">{new Date(user.created_at).toLocaleString()}</p>
+                        <p className="text-white font-medium text-lg">{user.username}</p>
+                        <p className="text-gray-400 text-sm">{new Date(user.created_at).toLocaleString()}</p>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex gap-3">
                         <button
-                          className="glass-button glass-button-success px-3 py-1 text-sm"
+                          className="glass-button glass-button-success px-4 py-2 text-sm"
                           onClick={() => handleAdminAction(user.user_id, 'approve')}
                         >
                           {t.approve}
                         </button>
                         <button
-                          className="glass-button glass-button-danger px-3 py-1 text-sm"
+                          className="glass-button glass-button-danger px-4 py-2 text-sm"
                           onClick={() => handleAdminAction(user.user_id, 'reject')}
                         >
                           {t.reject}
@@ -2457,18 +2459,18 @@ const App = () => {
                   </div>
                 ))}
                 {pendingUsers.length === 0 && (
-                  <p className="text-gray-400 text-center">No pending users</p>
+                  <p className="text-gray-400 text-center py-8">No pending users</p>
                 )}
               </div>
             </div>
 
             {/* All Users */}
             <div className="glass-card p-6">
-              <h2 className="text-xl font-bold text-white mb-4">{t.users}</h2>
-              <div className="space-y-4 max-h-96 overflow-y-auto">
+              <h2 className="text-2xl font-bold text-white mb-6">{t.users}</h2>
+              <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
                 {allUsers.map(targetUser => (
-                  <div key={targetUser.user_id} className="glass-card p-4">
-                    <div className="mb-3">
+                  <div key={targetUser.user_id} className="glass-card p-4 hover:bg-gray-700">
+                    <div className="mb-4">
                       <p className="text-white font-medium">{targetUser.username}</p>
                       <p className="text-gray-300 text-sm">{t.password}: {targetUser.plain_password || 'N/A'}</p>
                       <div className="flex gap-4 mt-2">
@@ -2834,8 +2836,8 @@ const App = () => {
           {/* Main Content */}
           <div className="lg:col-span-3">
             {/* Controls */}
-            <div className="glass-card p-6 mb-6">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="glass-card p-6 mb-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                 <button
                   className="glass-button glass-button-primary p-4 font-bold"
                   onClick={() => setShowUploadModal(true)}
@@ -2878,7 +2880,7 @@ const App = () => {
             {/* Accounts Table with Sorting */}
             <div className="glass-card p-8">
               {currentFolder && (
-                <div className="mb-6">
+                <div className="mb-8">
                   <h3 className="text-2xl font-black text-white mb-3 tracking-wide">
                     📂 {currentFolder.name}
                     <span className="text-red-400 text-lg ml-2">({accounts.length} accounts)</span>
